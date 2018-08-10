@@ -1,4 +1,4 @@
 module.exports = (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', ctx.origin);
+  ctx.set('Access-Control-Allow-Origin', '*');
   return next();
-}
+};
