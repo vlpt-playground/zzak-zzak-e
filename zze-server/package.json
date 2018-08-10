@@ -1,0 +1,29 @@
+{
+  "name": "zze-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
+    "joi": "^13.5.2",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-redis": "^3.1.2",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.2",
+    "mongoose": "^5.2.7",
+    "twitter-text": "^2.0.4"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=src node ./src",
+    "dev": "cross-env NODE_PATH=src nodemon --watch ./src ./src"
+  }
+}
