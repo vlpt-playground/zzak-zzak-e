@@ -2,12 +2,11 @@ require('dotenv').load();
 const Koa = require('koa');
 const mongoose = require('mongoose');
 const bodyParser = require('koa-bodyparser');
-const session = require('koa-session');
-const redisStore = require('koa-redis');
+const cors = require('./lib/cors');
 
 const router = require('./router');
 
-const { PORT: port, SESSION_SECRET: sessionSecret } = process.env;
+const { PORT: port } = process.env;
 
 // MongoDB 연결
 mongoose
@@ -25,6 +24,7 @@ mongoose.set('debug', true);
 
 const app = new Koa();
 
+app.use(cors);
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());

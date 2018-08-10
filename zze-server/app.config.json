@@ -1,0 +1,9 @@
+{
+  "apps": [{
+    "name": "app",
+    "script": "./src",
+    "env": {
+      "NODE_PATH": "src"
+    }
+  }]
+}
