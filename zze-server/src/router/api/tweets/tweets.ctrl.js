@@ -112,7 +112,7 @@ exports.listTweets = async ctx => {
   try {
     const tweets = await Tweet.find(query)
       .sort({ _id: -1 })
-      .limit(isRecent ? null : 10);
+      .limit((isRecent && cursor) ? null : 10);
     ctx.body = tweets.map(t => t.serialize());
   } catch (e) {
     ctx.throw(500, e);
