@@ -16,9 +16,7 @@
     "joi": "^13.5.2",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
-    "koa-redis": "^3.1.2",
     "koa-router": "^7.4.0",
-    "koa-session": "^5.8.2",
     "mongoose": "^5.2.7",
     "twitter-text": "^2.0.4"
   },
