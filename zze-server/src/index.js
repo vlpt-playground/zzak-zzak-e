@@ -28,6 +28,7 @@ const app = new Koa();
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
+app.proxy = true;
 
 app.listen(port || 8080, () => {
   console.log('Server is listening to port %d', port || 8080);
