@@ -31,7 +31,7 @@ exports.writeTweet = async ctx => {
       .max(1000),
   });
   const anonBodySchema = Joi.object({
-    anonymous: Joi.boolean().required(),
+    // anonymous: Joi.boolean().required(),
     name: Joi.string()
       .required()
       .min(1)
@@ -45,7 +45,8 @@ exports.writeTweet = async ctx => {
       .min(6)
       .max(30),
   });
-  const { anonymous } = ctx.request.body;
+  // const { anonymous } = ctx.request.body;
+  const anonymous = true;
   const schema = anonymous ? anonBodySchema : bodySchema;
   const validated = schema.validate(ctx.request.body);
   if (validated.error) {
@@ -112,7 +113,7 @@ exports.listTweets = async ctx => {
   try {
     const tweets = await Tweet.find(query)
       .sort({ _id: -1 })
-      .limit((isRecent && cursor) ? null : 10);
+      .limit(isRecent && cursor ? null : 10);
     ctx.body = tweets.map(t => t.serialize());
   } catch (e) {
     ctx.throw(500, e);
