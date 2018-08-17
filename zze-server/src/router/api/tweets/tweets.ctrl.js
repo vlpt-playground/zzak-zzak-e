@@ -124,7 +124,7 @@ exports.readTweet = async ctx => {
   ctx.body = ctx.state.tweet.serialize();
 };
 exports.removeTweet = async ctx => {
-  const { pass } = ctx.request.body;
+  const { pass } = ctx.query;
   const { tweet } = ctx.state;
   if (tweet.writer.anonymous) {
     if (!pass) {
