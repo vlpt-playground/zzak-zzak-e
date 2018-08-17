@@ -1,0 +1,45 @@
+.TweetItem {
+  padding: 1rem;
+  border: 2px solid #343a40;
+  .tweet-head {
+    position: relative;
+    .writer {
+      font-size: 0.875rem;
+      color: #212529;
+      .anonymous-name {
+        .hash {
+          margin-left: 0.25rem;
+          font-size: 0.75rem;
+          color: #adb5bd;
+        }
+      }
+      .username {
+        font-weight: 600;
+      }
+    }
+    .date {
+      margin-top: 0.2rem;
+      color: #495057;
+      font-size: 0.75rem;
+    }
+    .remove {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #ced4da;
+      font-size: 0.75rem;
+      &:hover {
+        color: #f06595;
+      }
+    }
+  }
+  .text {
+    margin-top: 1rem;
+    white-space: pre;
+  }
+}
+
+.TweetItem + .TweetItem {
+  margin-top: 1rem;
+}
