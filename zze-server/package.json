@@ -11,13 +11,17 @@
     "nodemon": "^1.18.3"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "joi": "^13.5.2",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "lodash": "^4.17.10",
     "mongoose": "^5.2.7",
+    "qs": "^6.5.2",
+    "react-redux": "^5.0.7",
     "twitter-text": "^2.0.4"
   },
   "scripts": {

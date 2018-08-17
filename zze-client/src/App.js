@@ -1,15 +1,16 @@
 import React from 'react';
 import AppTemplate from './components/base/AppTemplate';
 import Header from './components/base/Header';
-import TweetWrite from './components/tweets/TweetWrite';
-import Loading from './components/common/Loading';
-import TweetItemList from './components/tweets/TweetItemList';
+import TweetItemListContainer from './containers/tweets/TweetItemListContainer';
+import TweetWriteContainer from 'containers/tweets/TweetWriteContainer';
+import TweetRemoveModalContainer from 'containers/tweets/TweetRemoveModalContainer';
 
 const App = () => {
   return (
     <AppTemplate header={(<Header />)}> 
-      <TweetWrite />
-      <TweetItemList />
+      <TweetWriteContainer />
+      <TweetItemListContainer />
+      <TweetRemoveModalContainer />
     </AppTemplate>
   );
 };

@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ko from 'date-fns/locale/ko';
 import './TweetItem.scss';
 
-const TweetItem = ({ tweet }) => {
+const TweetItem = ({ tweet, onRemove }) => {
   const { writer, tags, _id, text, createdAt } = tweet;
 
+  const tagItems = tags.map(tag => <div className="tag-item" key={tag}>{tag}</div>);
   return (
     <div className="TweetItem">
       <div className="tweet-head">
@@ -22,11 +23,10 @@ const TweetItem = ({ tweet }) => {
         <div className="date">
           {distanceInWordsToNow(createdAt, { locale: ko, addSuffix: true })}
         </div>
-        { writer.anonymous && <div className="remove">
-          [삭제]
-        </div>}
+        {writer.anonymous && <div className="remove" onClick={() => onRemove(_id)}>[삭제]</div>}
       </div>
       <div className="text">{text}</div>
+      {tags.length > 0 && <div className="tags">{tagItems}</div>}
     </div>
   );
 };
