@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.0",
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "joi": "^13.5.2",
+    "jsonwebtoken": "^8.3.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
