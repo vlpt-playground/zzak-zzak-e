@@ -41,6 +41,7 @@
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-spinners": "^0.4.4",
     "recompose": "^0.28.2",
     "redux": "^4.0.0",
@@ -103,5 +104,5 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "https://zzakzzak-e.vlpt.us"
+  "proxy": "http://localhost:8080/"
 }

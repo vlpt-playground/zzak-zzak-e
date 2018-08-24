@@ -17,10 +17,12 @@ class TweetWriteContainer extends Component {
   handleWrite = async () => {
     const { fields, changeInput, writeTweet, getRecent } = this.props;
     const { name, password, text } = fields;
-    changeInput({
-      field: 'text', value: '',
-    });
+    if (!text) return;
     try {
+      changeInput({
+        field: 'text',
+        value: '',
+      });
       await writeTweet({
         name: name || '이름없음', // 기본값
         pass: password,
@@ -36,15 +38,23 @@ class TweetWriteContainer extends Component {
   };
 
   render() {
-    const { fields } = this.props;
-    return <TweetWrite onChange={this.handleChange} fields={fields} onWrite={this.handleWrite}/>;
+    const { fields, user } = this.props;
+    return (
+      <TweetWrite
+        onChange={this.handleChange}
+        fields={fields}
+        onWrite={this.handleWrite}
+        logged={!!user}
+      />
+    );
   }
 }
 
 export default connect(
-  ({ write, tweets }) => ({
+  ({ write, tweets, user }) => ({
     fields: write.fields,
-    firstId: tweets.list && tweets.list[0] && tweets.list[0]._id
+    firstId: tweets.list && tweets.list[0] && tweets.list[0]._id,
+    user: user.user,
   }),
   {
     changeInput,

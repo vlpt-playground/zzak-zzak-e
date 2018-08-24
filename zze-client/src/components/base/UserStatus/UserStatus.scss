@@ -1,0 +1,10 @@
+.UserStatus {
+  display: flex;
+  align-items: center;
+  .username {
+    color: white;
+    margin-right: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}

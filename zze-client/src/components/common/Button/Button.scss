@@ -1,0 +1,37 @@
+.Button {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  &:hover {
+    background: #f8f9fa;
+  }
+  &.outline {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    &:hover {
+      background: white;
+      color: #38d9a9;
+    }
+  }
+  &.active {
+    background: #38d9a9;
+    color: white;
+    &:hover {
+      background: #63e6be;
+    }
+  }
+}
+
+.Button + .Button {
+  margin-left: 1rem;
+}

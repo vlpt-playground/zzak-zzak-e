@@ -29,6 +29,8 @@ exports.writeTweet = async ctx => {
       .required()
       .min(1)
       .max(1000),
+    name: Joi.optional(),
+    pass: Joi.optional(),
   });
   const anonBodySchema = Joi.object({
     // anonymous: Joi.boolean().required(),
@@ -46,21 +48,14 @@ exports.writeTweet = async ctx => {
       .max(30),
   });
   // const { anonymous } = ctx.request.body;
-  const anonymous = true;
+  const { user } = ctx.state;
+  const anonymous = !user;
   const schema = anonymous ? anonBodySchema : bodySchema;
   const validated = schema.validate(ctx.request.body);
   if (validated.error) {
     ctx.body = {
       msg: '잘못된 데이터입니다.',
       payload: validated.error,
-    };
-    ctx.status = 400;
-    return;
-  }
-
-  if (!anonymous) {
-    ctx.body = {
-      msg: '아직까진 익명 짹짹만 할 수 있습니다.',
     };
     ctx.status = 400;
     return;
@@ -75,12 +70,19 @@ exports.writeTweet = async ctx => {
   const uniqueTags = [...new Set(tags)];
   const tweet = new Tweet({
     text,
-    writer: {
-      name,
-      anonymous: true,
-      ipHash: lastFive,
-      passwordHash: sha256(pass),
-    },
+    writer: anonymous
+      ? {
+          name,
+          anonymous: true,
+          ipHash: lastFive,
+          passwordHash: sha256(pass),
+        }
+      : {
+          name: user.username,
+          anonymous: false,
+          ipHash: null,
+          passwordHash: null,
+        },
     tags: uniqueTags,
   });
   try {
@@ -92,7 +94,7 @@ exports.writeTweet = async ctx => {
 };
 
 exports.listTweets = async ctx => {
-  const { cursor, recent, tag } = ctx.query;
+  const { cursor, recent, tag, username } = ctx.query;
   const isRecent = recent === 'true';
 
   if (cursor && !ObjectId.isValid(cursor)) {
@@ -108,6 +110,11 @@ exports.listTweets = async ctx => {
 
   if (tag) {
     query.tags = tag;
+  }
+
+  if (username) {
+    query['writer.name'] = username;
+    query['writer.anonymous'] = false;
   }
 
   try {
@@ -141,5 +148,19 @@ exports.removeTweet = async ctx => {
     }
     await tweet.remove();
     ctx.status = 204;
+    return;
+  }
+
+  const { user } = ctx.state;
+  if (user.username !== tweet.writer.name) {
+    ctx.status = 401;
+    return;
+  }
+
+  try {
+    await tweet.remove();
+    ctx.status = 204;
+  } catch (e) {
+    ctx.throw(500, e);
   }
 };

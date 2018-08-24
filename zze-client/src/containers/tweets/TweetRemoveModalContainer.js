@@ -14,7 +14,7 @@ class TweetRemoveModalContainer extends Component {
     try {
       await remove({
         id: this.props.id,
-        pass
+        pass,
       });
       closeRemoveModal();
     } catch (e) {
@@ -22,13 +22,14 @@ class TweetRemoveModalContainer extends Component {
     }
   };
   render() {
-    const { open, error } = this.props;
+    const { open, error, needPass } = this.props;
     if (!open) return null;
     return (
       <TweetRemoveModal
         onClose={this.handleClose}
         onRemoveConfirm={this.handleRemoveConfirm}
         error={error}
+        needPass={needPass}
       />
     );
   }
@@ -39,9 +40,10 @@ export default connect(
     open: tweets.removeModal.open,
     error: tweets.removeModal.error,
     id: tweets.removeModal.id,
+    needPass: tweets.removeModal.needPass,
   }),
   {
     closeRemoveModal,
-    remove
+    remove,
   }
 )(TweetRemoveModalContainer);

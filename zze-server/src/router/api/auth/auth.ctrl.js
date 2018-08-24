@@ -120,7 +120,7 @@ exports.check = ctx => {
 };
 
 exports.refreshToken = async ctx => {
-  const { user, tokenExp } = ctx.state;
+  const { user } = ctx.state;
   if (!user) {
     ctx.status = 401;
     return;
@@ -143,4 +143,9 @@ exports.refreshToken = async ctx => {
   } catch (e) {
     ctx.throw(500, e);
   }
+};
+
+exports.logout = ctx => {
+  ctx.cookies.set('token', null);
+  ctx.status = 200;
 };

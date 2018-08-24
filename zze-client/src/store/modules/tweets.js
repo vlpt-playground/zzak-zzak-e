@@ -13,7 +13,10 @@ const REMOVE = 'tweets/REMOVE';
 export const getInitial = createAction(GET_INITIAL, api.getList);
 export const getRecent = createAction(GET_RECENT, api.getList);
 export const getNext = createAction(GET_NEXT, api.getList);
-export const openRemoveModal = createAction(OPEN_REMOVE_MODAL, id => id);
+export const openRemoveModal = createAction(
+  OPEN_REMOVE_MODAL,
+  ({ id, needPass }) => ({ id, needPass })
+);
 export const closeRemoveModal = createAction(CLOSE_REMOVE_MODAL);
 export const remove = createAction(REMOVE, api.remove, meta => meta);
 
@@ -22,6 +25,7 @@ const initialState = {
   end: false,
   removeModal: {
     open: false,
+    needPass: false,
     id: null,
     error: null,
   },
@@ -32,8 +36,9 @@ const reducer = handleActions(
     [OPEN_REMOVE_MODAL]: (state, action) => {
       return produce(state, draft => {
         draft.removeModal.open = true;
-        draft.removeModal.id = action.payload;
+        draft.removeModal.id = action.payload.id;
         draft.removeModal.error = null;
+        draft.removeModal.needPass = action.payload.needPass;
       });
     },
     [CLOSE_REMOVE_MODAL]: (state, action) => {
@@ -79,9 +84,7 @@ export default applyPenders(reducer, [
     type: REMOVE,
     onSuccess: (state, action) => {
       return produce(state, draft => {
-        draft.list = draft.list.filter(
-          item => item._id !== action.meta.id
-        );
+        draft.list = draft.list.filter(item => item._id !== action.meta.id);
       });
     },
     onError: (state, action) => {

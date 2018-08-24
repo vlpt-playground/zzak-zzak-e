@@ -7,5 +7,7 @@
 			"path": "zze-client"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true
+	}
 }
