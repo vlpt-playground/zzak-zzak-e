@@ -4,10 +4,10 @@ import TweetWriteContainer from 'containers/tweets/TweetWriteContainer';
 import TweetItemListContainer from 'containers/tweets/TweetItemListContainer';
 import TweetRemoveModalContainer from 'containers/tweets/TweetRemoveModalContainer';
 
-const TweetsPage = () => {
+const TweetsPage = ({ match }) => {
   return (
     <TweetsTemplate>
-      <TweetWriteContainer />
+      {match.path === '/' && <TweetWriteContainer />}
       <TweetItemListContainer />
       <TweetRemoveModalContainer />
     </TweetsTemplate>
