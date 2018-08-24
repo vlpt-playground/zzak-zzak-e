@@ -9,6 +9,7 @@ import { clearUser } from 'lib/common';
 
 class HeaderContainer extends Component {
   handleLogout = () => {
+    // 로그아웃 할때는 로컬스토리지에서도 데이터 지우고, httpOnly 쿠키를 날리기위해 로그아웃 API 요청도 함
     const { UserActions } = this.props;
     clearUser();
     UserActions.logout();

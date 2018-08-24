@@ -8,6 +8,8 @@ import throttle from 'lodash/throttle';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 
+// 현재 스크롤 위치를 가져옵니다.
+// 브라우저마다 스펙이 다르기에 documentElement 유무에 따라 scrollTop 을 어디서 읽어야 할 지 다름
 const getScrollTop = () => {
   if (!document.body) return 0;
   const scrollTop = document.documentElement
@@ -16,6 +18,7 @@ const getScrollTop = () => {
   return scrollTop;
 };
 
+// 현재 브라우저 크기와 스크롤 위치를 계산하여 맨 아래에서 얼마나 떨어졌는지 확인
 const getScrollBottom = () => {
   if (!document.body) return 0;
   const { scrollHeight } = document.body;
@@ -100,6 +103,7 @@ class TweetItemListContainer extends Component {
     this.lastCursor = lastId;
   };
 
+  // throttle 을 통하여 1초에 최소 4번만 이 함수가 발생하게끔 제한 시킬수있음.
   handleScroll = throttle(() => {
     const scrollBottom = getScrollBottom();
     if (scrollBottom < 350) {
