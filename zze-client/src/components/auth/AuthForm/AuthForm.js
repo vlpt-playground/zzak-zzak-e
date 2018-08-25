@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './AuthForm.scss';
-import Button from '../../common/Button/Button';
+import Button from 'components/common/Button';
 
 class AuthForm extends Component {
   handleKeyPress = e => {

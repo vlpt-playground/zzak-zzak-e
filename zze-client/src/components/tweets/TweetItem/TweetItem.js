@@ -68,4 +68,5 @@ TweetItem.defaultProps = {
     __v: 0,
   },
 };
-export default onlyUpdateForKeys(['tweet'])(TweetItem);
+
+export default onlyUpdateForKeys(['tweet', 'currentUser'])(TweetItem);

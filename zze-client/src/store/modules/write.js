@@ -20,17 +20,16 @@ const initialState = {
   },
 };
 
-const reducer = handleActions({
-  [CHANGE_INPUT]: (state, action) => {
-    const { field, value } = action.payload;
-    return produce(state, draft => {
-      draft.fields[field] = value;
-    });
-  },
-}, initialState);
-
-export default applyPenders(reducer, [
+const reducer = handleActions(
   {
-    type: WRITE_TWEET,
-  }
-]);
+    [CHANGE_INPUT]: (state, action) => {
+      const { field, value } = action.payload;
+      return produce(state, draft => {
+        draft.fields[field] = value;
+      });
+    },
+  },
+  initialState
+);
+
+export default applyPenders(reducer, []);

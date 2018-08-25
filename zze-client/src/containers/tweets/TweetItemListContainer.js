@@ -97,9 +97,10 @@ class TweetItemListContainer extends Component {
   }
 
   getNext = () => {
-    const { TweetActions, lastId, loadingNext, end } = this.props;
+    const { TweetActions, lastId, loadingNext, end, match } = this.props;
     if (loadingNext || end || this.lastCursor === lastId) return;
-    TweetActions.getNext({ cursor: lastId });
+    const { tag, username } = match.params;
+    TweetActions.getNext({ cursor: lastId, tag, username });
     this.lastCursor = lastId;
   };
 
