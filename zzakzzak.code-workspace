@@ -1,13 +1,16 @@
 {
-	"folders": [
-		{
-			"path": "zze-server"
-		},
-		{
-			"path": "zze-client"
-		}
-	],
-	"settings": {
-		"editor.formatOnSave": true
-	}
+  "folders": [
+    {
+      "path": "zze-server"
+    },
+    {
+      "path": "zze-client"
+    },
+    {
+      "path": "zze-ssr"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true
+  }
 }
