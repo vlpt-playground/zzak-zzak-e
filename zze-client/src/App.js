@@ -5,6 +5,7 @@ import AppTemplate from 'components/base/AppTemplate';
 import HeaderContainer from 'containers/base/HeaderContainer';
 import { TweetsPage, AuthPage } from 'pages';
 import Core from 'containers/base/Core';
+import { Rendered } from 'lib/shouldCancel';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       </Switch>
       <Route path="/:authType(login|register)" component={AuthPage} />
       <Core />
+      <Rendered />
     </AppTemplate>
   );
 };

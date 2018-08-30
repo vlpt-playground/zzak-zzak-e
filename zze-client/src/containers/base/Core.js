@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { loadUser } from 'lib/common';
 import { connect } from 'react-redux';
 import * as userActions from 'store/modules/user';

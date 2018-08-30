@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './TweetRemoveModal.scss';
 
 class TweetRemoveModal extends Component {
@@ -26,17 +26,8 @@ class TweetRemoveModal extends Component {
         <div className="modal-wrapper">
           <div className="modal">
             <div className="title">삭제하기</div>
-            <div className="description">
-              {needPass ? '비밀번호를 입력하세요.' : '정말 삭제하시겠습니까?'}
-            </div>
-            {needPass && (
-              <input
-                type="password"
-                placeholder="비밀번호"
-                onChange={this.handleChange}
-                value={this.state.password}
-              />
-            )}
+            <div className="description">{needPass ? '비밀번호를 입력하세요.' : '정말 삭제하시겠습니까?'}</div>
+            {needPass && <input type="password" placeholder="비밀번호" onChange={this.handleChange} value={this.state.password} />}
             {error && <div className="error">잘못된 비밀번호입니다.</div>}
             <div className="buttons-wrapper">
               <button className="cancel" onClick={onClose}>

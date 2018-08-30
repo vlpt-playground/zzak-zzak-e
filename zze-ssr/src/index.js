@@ -25,7 +25,7 @@ const publicPath = path.resolve('../zze-client/build');
 // "/" 경로로 들어갔을 때 index.html 이 보여지지 않도록 설정
 app.use(koaStatic(publicPath, { index: false }));
 
-const buildHtml = html => {
+const buildHtml = (html, state) => {
   return `<!doctype html>
   <html lang="en">
   
@@ -40,6 +40,9 @@ const buildHtml = html => {
   </head>
   
   <body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root">${html}</div>
+    <script>
+        window.__PRELOADED_STATE__ = ${state ? JSON.stringify(state).replace(/</g, '\\u003c') : 'undefined'}
+    </script>
     <script type="text/javascript"
       src="/${manifest['main.js']}"></script>
   </body>
@@ -53,7 +56,13 @@ app.use(async ctx => {
   if (ctx.status !== 404) return;
   ctx.status = 200;
   const result = await render(ctx);
-  const html = buildHtml(result.html);
+  // 만약에 에러가 발생했으면 브라우저 위주 렌더링
+  if (result.error) {
+    ctx.body = buildHtml();
+    return;
+  }
+
+  const html = buildHtml(result.html, result.state);
   ctx.body = html;
 });
 
