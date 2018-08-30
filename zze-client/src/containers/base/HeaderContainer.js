@@ -25,7 +25,7 @@ class HeaderContainer extends Component {
           user ? (
             <UserStatus username={user.username} onLogout={this.handleLogout} />
           ) : (
-            <Button outline to="login">
+            <Button outline to="/login">
               로그인
             </Button>
           )

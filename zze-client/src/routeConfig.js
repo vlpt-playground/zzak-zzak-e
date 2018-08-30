@@ -1,4 +1,4 @@
-import { TweetsPage } from 'pages';
+import { TweetsPage, AuthPage } from 'pages';
 import { getInitial } from 'store/modules/tweets';
 // 각 라우트에서 필요한 데이터를 미리 불러오는 로직을 여기서 구현
 export default [
@@ -30,5 +30,10 @@ export default [
       return store.dispatch(getInitial({ tag: decodeURI(tag) }));
       // 혹시나 query 를 사용해야 한다면, ctx.query 안에 들어있음.
     },
+  },
+  // preload 할 것이 없어도 코드스플리팅시 깜박임현상을 없애기 위해서 추가
+  {
+    path: '/(login|register)',
+    component: AuthPage,
   },
 ];
