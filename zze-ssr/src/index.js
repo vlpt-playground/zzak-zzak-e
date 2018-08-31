@@ -1,3 +1,4 @@
+require('dotenv').load();
 const Koa = require('koa');
 const Router = require('koa-router');
 const koaStatic = require('koa-static');
@@ -68,6 +69,6 @@ app.use(async ctx => {
   ctx.body = html;
 });
 
-app.listen(5000, () => {
-  console.log('Server is listening to port 5000');
+app.listen(process.env.PORT || 5000, () => {
+  console.log('Server is listening to port ' + process.env.PORT || 5000);
 });

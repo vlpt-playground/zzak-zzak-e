@@ -4,8 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "koa": "^2.5.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "pm2": "^3.0.4"
+  },
+  "scripts": {
+    "pm2:start": "pm2 start ssr.config.json",
+    "pm2:reload": "pm2 reload ssr"
   }
 }
