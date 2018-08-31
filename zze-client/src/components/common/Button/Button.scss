@@ -14,8 +14,7 @@
   font-size: 0.875rem;
   &:hover {
     background: #f8f9fa;
-  }
-  // 테두리로 이뤄진 버튼
+  } // 테두리로 이뤄진 버튼
   &.outline {
     background: none;
     border: 1px solid white;
@@ -24,9 +23,9 @@
       background: white;
       color: #38d9a9;
     }
-  }
-  // 청록색 버튼
+  } // 청록색 버튼
   &.active {
+    border: none;
     background: #38d9a9;
     color: white;
     &:hover {
@@ -36,6 +35,6 @@
 }
 
 // 버튼 사이 여백
-.Button + .Button {
+.Button+.Button {
   margin-left: 1rem;
 }

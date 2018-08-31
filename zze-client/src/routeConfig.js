@@ -1,5 +1,6 @@
 import { TweetsPage, AuthPage } from 'pages';
 import { getInitial } from 'store/modules/tweets';
+import { hideHeader } from 'store/modules/base';
 // 각 라우트에서 필요한 데이터를 미리 불러오는 로직을 여기서 구현
 export default [
   {
@@ -33,7 +34,11 @@ export default [
   },
   // preload 할 것이 없어도 코드스플리팅시 깜박임현상을 없애기 위해서 추가
   {
-    path: '/(login|register)',
+    path: '/:authType(login|register)',
     component: AuthPage,
+    preload: async store => {
+      // 헤더 숨기기)
+      store.dispatch(hideHeader());
+    },
   },
 ];

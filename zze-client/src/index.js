@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, matchPath } from 'react-router-dom';
 
 import configure from 'store/configure';
+import { NotFoundPage } from 'pages';
 
 import './index.css';
 import App from './App';
@@ -25,6 +26,11 @@ const render = async () => {
         promises.push(p);
       }
     });
+
+    if (promises.length === 0) {
+      // 일치된 페이지가 없으면 NotFoundPage 컴포넌트 미리 불러오기
+      promises.push(NotFoundPage.preloadComponent());
+    }
 
     try {
       await Promise.all(promises);
