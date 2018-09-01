@@ -37,7 +37,10 @@ class TweetItemListContainer extends Component {
     // https://pusher.com/ 같은 서비스를 사용하는게 성능에 좋습니다.
     // timeoutId 를 설정한 이유는 componentWillUnmount 에서
     // 작업 취소를 하기 위함입니다.
-    this.timeoutid = setTimeout(() => {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = setTimeout(() => {
       const {
         TweetActions,
         match: { params },
